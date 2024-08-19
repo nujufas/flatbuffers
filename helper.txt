@@ -1,0 +1,2 @@
+git reset HEAD~ 
+git diff --staged > ~/tazel/third_party/f/flatbuffers/patch.flatbuffers

@@ -1,0 +1,45 @@
+
+load("//:build_defs_py.bzl", "flatbuffer_py_library")
+
+# bazel build "//python/nj:eval_flatbuffers_fbs_py"
+flatbuffer_py_library(
+    name = "eval_flatbuffers_fbs_py",
+    srcs = [
+        "eval_flatbuffers.fbs",
+        "monster.fbs",
+    ],
+    gen_reflections = True,
+    py_include_paths = [
+        ".",
+        # "./Example",
+        # "./MyGame/Sample",
+        # "third_party/f/flatbuffers/eval",
+    ],
+    outs = [
+        "Example/__init__.py",
+        "Example/Person.py",
+        "MyGame/__init__.py",
+        "MyGame/Sample/__init__.py",
+        "MyGame/Sample/Color.py",
+        "MyGame/Sample/Equipment.py",
+        "MyGame/Sample/Vec3.py",
+        "MyGame/Sample/Monster.py",
+        "MyGame/Sample/Weapon.py",
+    ],
+    deps = [
+        # "@flatbuffers//python:flatbuffers",
+        "//:flatbuffers_py",
+    ]
+)
+
+# bazel run "//python/nj:test"
+py_binary(
+    name = "test",
+    srcs = [
+        "test.py",
+    ],
+    main = "test.py",
+    deps = [
+        ":eval_flatbuffers_fbs_py"
+    ],
+)

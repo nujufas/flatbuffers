@@ -1,0 +1,10 @@
+// example.fbs
+namespace Example;
+
+table Person {
+  id:int;
+  name:string;
+  age:int;
+}
+
+root_type Person;
